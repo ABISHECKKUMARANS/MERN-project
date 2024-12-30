@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+  background-image: url('/src/assets/bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+p {
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  text-align: justify;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00bcd4;
+}
+
+button.web-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: transform 0.3s ease;
+}
+
+button.web-button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+button.web-button:hover {
+  transform: scale(1.1);
+}
+
+/* Section */
+section {
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links a {
+    margin-bottom: 10px;
+  }
+
+  button.web-button img {
+    width: 30px;
+    height: 30px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: blanchedalmond;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}

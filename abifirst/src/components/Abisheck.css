@@ -1,0 +1,14 @@
+h1{
+    color: seagreen;
+    font-size: 30px;
+    text-align: center;
+    background-color: blanchedalmond;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgb(134, 255, 142);
+}
+:hover{
+    background-color: #ffffff;
+
+}

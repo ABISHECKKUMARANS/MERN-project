@@ -1,0 +1,11 @@
+class selector(.)
+id selector(#)
+tag selector(elements)
+universal selector(*)
+group selector(.class, #id, element)(multiple elements)
+attribute selector([attr])
+
+---lists
+*ordered
+*unordered
+*descriptive 
