@@ -7,7 +7,7 @@ function Aboutus() {
     <div className="container">
       <nav>
       <button className="web-button" onClick={() => window.location.href = '/'}>
-  <img src="/src/assets/me.jpg" alt="Logo" /> WEB
+  <img src="/src/assets/me.jpg" alt="Logo" /> ABISHECK
 </button>
 
         <div className="nav-links">
