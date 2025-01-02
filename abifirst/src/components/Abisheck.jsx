@@ -1,10 +1,8 @@
-import { useState } from "react"  
-import './Abisheck.css'
-function Abisheck(props) {
+function Abisheck(){
   return (
     <>
-    <h1>Sum is {parseInt(props.num1) + parseInt(props.num2)}</h1>
+    <h1>Hi</h1>
     </>
   )
-} 
+}
 export default Abisheck

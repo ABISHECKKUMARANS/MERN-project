@@ -9,3 +9,337 @@ attribute selector([attr])
 *ordered
 *unordered
 *descriptive 
+
+---Document Object Model
+Affects all the tags when changes made
+---Virtual DOM
+Affects only one tag which is changed
+
+use Effect hooks re-renders ---destroys old value given in useEffect
+when a side effect occurs useEffect is used.
+
+usestate---rerenders whole code
+
+useref---rerenders only specific finction which is changed
+
+import { useState, useEffect, useRef } from "react" 
+import './Inp.css' 
+function Inp() {
+  const [inp, setInp] = useState("");
+  const changeip=(e)=>{
+    setInp(e.target.value);
+  };
+  useEffect(() => {
+    console.log(inp);
+  }, [inp]);
+  return (
+    <>
+      <label>Input: </label>
+      <input type="text" placeholder="Enter your text" value={inp} onChange={changeip} 
+      />
+    </>
+  )
+} 
+export default Inp
+
+import { useState, useEffect, useRef } from "react"  
+import './Abisheck.css'
+
+
+function Abisheck() {
+  let [count, setCount] = useState(0)
+  let counts = useRef(0)
+
+  const increment = () => {
+    setCount(count + 1)
+    counts.current++
+    console.log("Count:", count)
+    console.log("CountREF:", counts.current)
+  }
+
+  const decrement = () => {
+    setCount(count - 1)
+    counts.current--
+    console.log("Count:", count)
+    console.log("CountREF:", counts.current)
+  }
+
+  useEffect(() => {
+    console.log("Code executed")
+
+    return () => {
+      console.log("Code cleanup")
+    }
+  }, [count])
+
+  return (
+    <>
+      <h1>Count is {count}</h1>
+      <button onClick={increment}>Increase</button>
+      <button onClick={decrement}>Decrease</button>
+    </>
+  )
+} 
+
+export default Abisheck
+
+function List() {
+  return (
+    <div>
+        <ol>
+            <li>Fruits</li>
+            <ul>
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Orange</li>
+            </ul>
+            <li>Vegetables</li>
+            <ol type="I">
+                <li>Carrot</li>
+                <li>Brinjal</li>
+                <li>Tomato</li>
+            </ol>
+            <li>Flowers</li>
+            <ul type="*">
+                <li>Rose</li>
+                <li>Lily</li>
+                <li>Jasmine</li>
+            </ul>
+        </ol>
+    </div>
+  )
+}
+
+export default List
+
+
+function Form(){
+    return(
+    <div className="slam-book-container">
+        <form>
+            <fieldset>
+                <legend>SLAM BOOK</legend>
+                <div>
+                    <label>Friend's Name:</label>
+                    <input type="text" id="friendName" name="friendName" placeholder="Enter your friend's name"/>
+                </div>
+                <div>
+                    <label>Nickname:</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="Enter your nickname"/>
+                </div>
+                <div>
+                    <label>Gender:</label>
+                    <div className="inline-group">
+                        <input type="radio" id="male" name="gender" value="male"/>
+                        <label htmlFor="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female"/>
+                        <label htmlFor="female">Female</label>
+                    </div>
+                </div>
+                <div>
+                    <label>Mobile:</label>
+                    <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile"/>
+                </div>
+                <div>
+                    <label>Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address"/>
+                </div>
+                <div>
+                    <label>School Name:</label>
+                    <select id="schoolName" name="schoolName">
+                        <option value="">Select your school</option>
+                        <option value="school1">A school</option>
+                        <option value="school2">B school</option>
+                        <option value="school3">C school</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Memories about yourself:</label>
+                    <textarea id="memories" name="memories" placeholder="Share your memories"></textarea>
+                </div>
+                <div>
+                    <label>Favourite Actors:</label>
+                    <div className="inline-group">
+                        <input type="checkbox" id="actor1" name="favoriteActors" value="actor1"/>
+                        <label htmlFor="actor1">Vijay</label>
+                        <input type="checkbox" id="actor2" name="favoriteActors" value="actor2"/>
+                        <label htmlFor="actor2">Ajith</label>
+                        <input type="checkbox" id="actor3" name="favoriteActors" value="actor3"/>
+                        <label htmlFor="actor3">Surya</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div>
+                <h1></h1>
+                <center>
+                <button type="submit">Submit</button>
+                </center>
+            </div>
+        </form>
+    </div>
+    )
+}
+export default Form
+
+
+import { useState } from "react";
+import './Kumaran.css'
+
+function Kumaran() {
+    let [name, setName] = useState("")
+    let [inputValue, setInputValue] = useState(name);
+    const handleEnter = () => {setName(inputValue);}
+    return (
+        <>
+        <center>
+        <input type="text" id="name" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+        &nbsp;<button onClick={handleEnter}>Enter</button>
+        <h1>My name is {name}</h1>
+        </center>
+        </>
+    ) 
+}
+export default Kumaran
+
+------------------------------------------------
+
+props drill--passing values to many fuctions through functions
+
+inheritance--passing values to many functions through parent child relationship
+
+import React, { useContext } from "react";
+import Hen from "./Hen.jsx";
+import { createContext } from "react";
+const App = () => {
+    
+    return(
+        <nameContext.Provider value='FOOD'>
+        <Hen/>
+        </nameContext.Provider>
+    )
+}
+export let nameContext=createContext();
+export default App;
+
+
+import React from 'react'
+import {nameContext} from './App.jsx'
+import Stomach from './Stomach.jsx';
+import {useContext} from 'react'
+const Hen = () => {
+  let value=useContext(nameContext);
+  return(
+    <>
+    <h1>Hen: {value}</h1>
+    <Stomach/>
+    </>
+  )
+}
+
+export default Hen
+
+import React from "react";
+import {nameContext} from './App.jsx'
+import {useContext} from 'react'
+const Stomach = () => {
+    let value=useContext(nameContext);
+    return(
+        <>
+        <h1> Stomach: {value}</h1>     
+        </>
+    )
+}
+
+export default Stomach;
+
+let a=4>3?6>8?10:3>8?4>1?20:30:4>77
+
+import React from 'react'
+import Halfboil from './Halfboil.jsx'
+
+const Egg = (props) => {
+  return (
+    <div>
+        <h1> Egg: {props.name}</h1>
+        <Halfboil name={props.name}/>
+    </div>
+  )
+}
+
+export default Egg
+
+import React from "react";
+import Stomach from "./Stomach.jsx";
+
+const Halfboil = (props) => {
+    return(
+        <>
+        <h1> Halfboil: {props.name}</h1>
+        <Stomach name={props.name}/>
+        </>
+    )
+}
+
+export default Halfboil;
+
+import React, { useState, useContext } from 'react'
+import { nameContext } from './App.jsx'
+import Stomach from './Stomach.jsx'
+import './Hen.css'
+
+const Hen = () => {
+  let value = useContext(nameContext)
+  let [background, setBackground] = useState('black')
+  let [color, setColor] = useState('white')
+
+  let changeColor = () => {
+   setColor(color === 'black' ? 'white' : 'black')
+  }
+
+  return (
+    <>
+      
+      <h1 style={{ background: color, color: color=='white'?'black':'white' }}>Hen: {value}</h1>
+      <center>
+      <button onClick={changeColor}>BUTTON</button>
+      </center>
+      <Stomach />
+    </>
+  )
+}
+
+export default Hen
+
+import React, { useState, useContext } from "react";
+import { nameContext } from './App.jsx'
+
+const Stomach = () => {
+    let value = useContext(nameContext);
+    let [color, setColor] = useState('white')
+
+    let changeColor = () => {
+        setColor(color === 'black' ? 'white' : 'black')
+    }
+
+    return (
+        <>
+        
+        <h1 style={{ background: color, color: color=='white'?'black':'white' }}>Stomach: {value}</h1>
+        <center>
+        <button onClick={changeColor}>BUTTON</button>
+        </center>
+        </>
+    )
+}
+
+export default Stomach;
+
+usememo---to optimize web page
+
+node -- js runtime environment
+
+npm -- node package manager
+
+react js -- library for building user interface in web applications4
+
+express js -- library for building server side application
