@@ -1,0 +1,102 @@
+npm init -y
+npm install express
+npm install nodemon
+
+createe Server.js file
+
+in package.json---in scripts replace test by "start": "nodemon Server.js"
+
+why nodemon --- nodemon is a tool that helps us to restart the server automatically when we make any changes in the code. 
+                It is a development tool. It is used to run the server in development mode.
+
+in Server.js
+
+const express = require('express');
+const app = express();
+app.listen(3003) //specify ports
+
+status code
+100 - Information
+200 - Success messages
+300 - Redirection messages
+400 - Client side Errors
+404 - Not Found
+500 - Server side Errors
+
+HTTP Methods(HTTP Verbs)
+
+GET - Retrieve data(DATABASE)
+POST - Create a new data
+DELETE - Delete 
+PATCH - Update particular data
+PUT - Update all data 
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+    // res.status(404).send('Not Found');
+    // res.status(200).send ()console.error('Not Found')
+    res.json({ message: 'Hello World' });
+    // res.send('Hello World');
+}
+    );
+
+app.listen(8088)
+
+status codes has highest priority than HTTP methods.
+
+MVC Architecture 
+-model
+-view
+-controller
+
+tightly coupled program -- 
+loosely coupled program -- best practice, reduce hard coding values
+
+const express = require('express');
+const app = express();
+app.set('view engine', 'ejs');
+app.set('views', './view');
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+app.get('/home', (req, res) => {
+    res.send('User Information');
+})
+app.get('/home/adduser', (req, res) => {
+    res.send('Add new user');
+})
+app.get('/home/deluser', (req, res) => {
+    res.send('Delete user');
+})
+
+app.listen(8088);
+
+=====================================================================================================
+
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+const home = require('./Route/User'); //importing routes
+app.use('/home', home);
+app.listen(8088);
+
+const express = require('express');
+let router = express.Router();
+router.get('/', (req, res) => {
+    res.send('User Information');
+})
+router.get('/adduser', (req, res) => {
+    res.send('Add new user');
+})
+router.get('/deluser', (req, res) => {
+    res.send('Delete user');
+})
+module.exports = router;
+
+=======================================================================================================
+
+routing with id ---
