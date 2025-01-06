@@ -343,3 +343,307 @@ npm -- node package manager
 react js -- library for building user interface in web applications4
 
 express js -- library for building server side application
+
+
+import React, { useState, useMemo } from "react";
+
+function App() {
+    let [number, setNumber] = useState(0)
+    let [dark, setDark] = useState(false)
+
+    const themeStyles = useMemo(() => {
+        return {
+            backgroundColor: dark ? 'black' : 'white',
+            color: dark ? 'white' : 'black',
+            padding: '10px',
+            marginTop: '10px'
+        }
+    }, [dark])
+
+    return (
+        <div>
+            <input 
+                type="number" 
+                value={number} 
+                onChange={(e) => setNumber(e.target.value)} 
+            />
+            <button onClick={() => setDark(prevDark => !prevDark)}>
+                Toggle Theme
+            </button>
+            <div style={themeStyles}>
+                <h2>Number: {number}</h2>
+            </div>
+        </div>
+    )
+}
+
+export default App;
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
+
+function Home() {
+  return (
+    <div className="container">
+      <nav>
+        <button className="web-button" onClick={() => window.location.href = '/'}>
+          <img src="/src/assets/me.jpg" alt="Logo" /> Abisheck
+        </button>
+        <div className="nav-links">
+          <Link to="/">HOME</Link>
+          <Link to="/Aboutus">ABOUT US</Link>
+          <Link to="/Contactus">CONTACT US</Link>
+        </div>
+      </nav>
+      <section>
+        <h1 
+        >Welcome to the Home Page</h1>
+        <p>
+          Welcome to our platform! At Abisheck's Services, we are committed to delivering 
+          top-quality solutions tailored to meet your specific needs. Our mission is to 
+          help businesses thrive by providing innovative products and exceptional customer support.
+        </p>
+        <p>
+          Explore our services to discover how we can help you streamline your operations and 
+          achieve your goals. With a focus on integrity, innovation, and excellence, we strive 
+          to exceed expectations in every project we undertake.
+        </p>
+        <p>
+          Feel free to navigate through the website to learn more about us. Whether you’re here 
+          to explore, inquire, or connect, we’re delighted to have you.
+        </p>
+        <p>
+          Start by visiting our <Link to="/Aboutus">About Us</Link> page to learn more about our journey. 
+          Need assistance? Head over to the <Link to="/Contactus">Contact Us</Link> page to get in touch.
+        </p>
+      </section>
+      <footer>&copy; Abisheck's product</footer>
+    </div>
+  );
+}
+
+export default Home;
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css'; 
+
+function Contactus() {
+  return (
+    <div className="container">
+      <nav>
+      <button className="web-button" onClick={() => window.location.href = '/'}>
+  <img src="/src/assets/me.jpg" alt="Logo" /> ABISHECK
+</button>
+
+        <div className="nav-links">
+          <Link to="/"> HOME</Link>
+          <Link to="/Aboutus">ABOUT US</Link>
+          <Link to="/Contactus">CONTACT US</Link>
+        </div>
+      </nav>
+      <section>
+        <h1>
+            Contact us Page.
+        </h1>
+            <p>
+                If you have any questions or need further information, please feel free to reach out to us. 
+                You can contact us via email at contact@abisheck.com or call us at +123 456 7890. 
+                We are here to assist you and ensure you have the best experience with our services.
+            </p>
+        
+      </section>
+      <footer>
+        &copy; Abisheck's product
+      </footer>
+    </div>
+  );
+}
+
+export default Contactus;
+
+/* General Styles */
+body {
+  background-image: url('/src/assets/bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+p {
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  text-align: justify;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00bcd4;
+}
+
+button.web-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: transform 0.3s ease;
+}
+
+button.web-button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+button.web-button:hover {
+  transform: scale(1.1);
+}
+
+/* Section */
+section {
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links a {
+    margin-bottom: 10px;
+  }
+
+  button.web-button img {
+    width: 30px;
+    height: 30px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: blanchedalmond;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
+
+function Aboutus() {
+  return (
+    <div className="container">
+      <nav>
+      <button className="web-button" onClick={() => window.location.href = '/'}>
+  <img src="/src/assets/me.jpg" alt="Logo" /> ABISHECK
+</button>
+
+        <div className="nav-links">
+          <Link to="/">HOME</Link>
+          <Link to="/Aboutus">ABOUT US</Link>
+          <Link to="/Contactus">CONTACT US</Link>
+        </div>
+      </nav>
+      <section>
+        <h1>
+   About us Page.
+        </h1>
+        <p>
+            Our company has been a leader in the industry for over a decade. 
+            We are committed to providing top-quality services and products to our customers.
+            Our team of dedicated professionals works tirelessly to ensure customer 
+            satisfaction and to uphold our values of integrity, excellence, and innovation.
+            We believe in continuous improvement and strive to exceed expectations in everything we do.
+            Thank you for taking the time to learn more about us.
+        </p>
+      </section>
+      <footer>
+        &copy; Abisheck's product
+      </footer>
+    </div>
+  );
+}
+
+export default Aboutus;
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './Home.jsx';
+import Aboutus from './Aboutus.jsx';
+import Contactus from './Contactus.jsx';
+
+function Abi() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Aboutus" element={<Aboutus />} />
+        <Route path="/Contactus" element={<Contactus />} />
+      </Routes>
+    </Router>
+
+    
+  );
+}
+export default Abi;
